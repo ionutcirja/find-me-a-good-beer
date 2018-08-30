@@ -14,10 +14,10 @@ describe('TextField component', () => {
     beforeEach(() => {
       propsToRender = {
         type: 'text',
-        name: 'username',
+        name: 'food',
         meta: {},
         disabled: true,
-        placeholder: 'username',
+        placeholder: 'preferred food',
       };
     });
 
@@ -30,11 +30,11 @@ describe('TextField component', () => {
       expect(inputProps.disabled).toEqual(propsToRender.disabled);
     });
 
-    it('should render a label if label prop value is defined', () => {
+    it('should render an InputLabel if label prop value is defined', () => {
       let wrapper = shallow(<Component {...propsToRender} />);
       expect(wrapper.find(InputLabel).length).toEqual(0);
 
-      propsToRender.label = 'Username';
+      propsToRender.label = 'Food';
       wrapper = shallow(<Component {...propsToRender} />);
       const label = wrapper.find(InputLabel);
       const labelProps = label.props();
@@ -51,7 +51,7 @@ describe('TextField component', () => {
       wrapper = shallow(<Component {...propsToRender} />);
       expect(wrapper.find(FormHelperText).length).toEqual(0);
 
-      propsToRender.meta.error = 'Username already exists.';
+      propsToRender.meta.error = 'Food field is empty.';
       wrapper = shallow(<Component {...propsToRender} />);
       expect(wrapper.find(FormHelperText).childAt(0).text()).toEqual(propsToRender.meta.error);
     });

@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 import TextField from '../text-field';
 import Component from '..';
 
-describe('Form component', () => {
+describe('FormField component', () => {
   describe('render', () => {
     let propsToRender;
 
     beforeEach(() => {
       propsToRender = {
         type: 'text',
-        name: 'username',
+        name: 'food',
       };
     });
 
