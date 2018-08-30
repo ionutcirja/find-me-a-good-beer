@@ -1,0 +1,95 @@
+{
+  "name": "find-me-a-good-beer",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8080 --open",
+    "lint": "eslint client/**",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll",
+    "flow": "flow"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./tests-setup/index.js",
+    "verbose": true,
+    "collectCoverage": true,
+    "testURL": "http://localhost/",
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**/node_modules/**",
+      "!**/tests-setup/**",
+      "!**/coverage/**",
+      "!**/webpack.config.js",
+      "!**/postcss.config.js",
+      "!**/client/index.js",
+      "!**/store/**",
+      "!**/reducers/index.js"
+    ],
+    "testMatch": [
+      "**/__tests__/?(*.)(spec|test).js"
+    ],
+    "moduleNameMapper": {
+      "\\.(scss)$": "<rootDir>/tests-setup/module-mock.js"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-transition-group": "^2.4.0",
+    "classnames": "^2.2.6",
+    "redux": "^4.0.0",
+    "react-redux": "^5.0.7",
+    "redux-actions": "^2.6.1",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "superagent-wrapper": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "flow-babel-webpack-plugin": "^1.1.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "redux-mock-store": "^1.5.3",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "babel-jest": "^23.4.2",
+    "jest": "^23.4.2",
+    "enzyme": "^3.4.1",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "node-sass": "^4.9.2",
+    "style-loader": "^0.22.1",
+    "css-loader": "^1.0.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "file-loader": "^1.1.11",
+    "autoprefixer": "^9.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "ignore-styles": "^5.0.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "pre-commit": "^1.2.2",
+    "flow-bin": "^0.78.0",
+    "deep-freeze": "^0.0.1"
+  }
+}
