@@ -6,7 +6,11 @@ export type Action = {
 
 export type Dispatch = (action: Action) => any;
 
-export type BeerList = Array<{}>;
+export type BeerList = Array<{
+  +name: string,
+  +description: string,
+  +first_brewed: string,
+}>;
 
 export type State = {
   +beerList: BeerList,
