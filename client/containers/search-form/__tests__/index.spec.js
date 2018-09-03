@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import Container from '..';
 import validate from '../validate';
 import * as SearchActions from '../../../actions/search';
+import SearchForm from '../../../components/search-form';
 
 jest.mock('../validate');
 jest.mock('../../../actions/search');
@@ -18,7 +19,7 @@ describe('SearchForm container', () => {
   describe('render', () => {
     it('should render a SearchForm component', () => {
       const component = shallow(<Container store={store} />).shallow().shallow().shallow();
-      expect(component.find('SearchForm').length).toEqual(1);
+      expect(component.find(SearchForm).length).toEqual(1);
     });
   });
 
