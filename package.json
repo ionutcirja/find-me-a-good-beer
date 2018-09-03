@@ -24,7 +24,8 @@
       "!**/postcss.config.js",
       "!**/client/index.js",
       "!**/store/**",
-      "!**/reducers/index.js"
+      "!**/reducers/index.js",
+      "!**/sagas/index.js"
     ],
     "testMatch": [
       "**/__tests__/?(*.)(spec|test).js"
