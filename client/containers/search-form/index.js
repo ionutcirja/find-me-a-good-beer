@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
+import { Dispatch } from '../../constants/types';
 import * as searchActions from '../../actions/search';
 import validate from './validate';
 import { SEARCH_BEER_FORM_NAME } from '../../constants/forms';
@@ -13,11 +14,11 @@ type Values = {
 
 type Props = {
   actions: {
-    search: (values: Values) => void,
+    searchForBeer: (values: Values) => void,
   },
 };
 
-const mapDispatchToProps = (dispatch: void) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(searchActions, dispatch),
 });
 
