@@ -4,7 +4,7 @@ import type { FormProps } from 'redux-form';
 import { Grid, Button } from '@material-ui/core';
 import FormField from '../form-field';
 
-const SearchForm = ({ handleSubmit }: FormProps) => (
+const SearchForm = ({ handleSubmit, pristine, submitting }: FormProps) => (
   <form onSubmit={handleSubmit}>
     <Grid
       container
@@ -20,6 +20,7 @@ const SearchForm = ({ handleSubmit }: FormProps) => (
         type="submit"
         variant="contained"
         color="primary"
+        disabled={pristine || submitting}
       >
         Find me a fancy beer
       </Button>

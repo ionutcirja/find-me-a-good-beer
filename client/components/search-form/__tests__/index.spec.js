@@ -4,9 +4,15 @@ import { Button } from '@material-ui/core';
 import Component from '..';
 
 describe('SearchForm component', () => {
-  const propsToRender = {
-    handleSubmit: jest.fn(),
-  };
+  let propsToRender;
+  
+  beforeEach(() => {
+    propsToRender = {
+      handleSubmit: jest.fn(),
+      pristine: false,
+      submitting: false,
+    };
+  });
   
   describe('render', () => {
     it('should render a form with a submit method', () => {
@@ -14,9 +20,22 @@ describe('SearchForm component', () => {
       expect(wrapper.find('form').props().onSubmit).toEqual(propsToRender.handleSubmit);
     });
     
-    it('should render a submit button', () => {
-      const wrapper = shallow(<Component {...propsToRender} />);
-      expect(wrapper.find(Button).props().type).toEqual('submit');
+    it('should render a submit button which should be disabled if form is pristine or submitting', () => {
+      let wrapper = shallow(<Component {...propsToRender} />);
+      let buttonProps = wrapper.find(Button).props();
+      expect(buttonProps.type).toEqual('submit');
+      expect(buttonProps.disabled).toEqual(false);
+      
+      propsToRender.submitting = true;
+      wrapper = shallow(<Component {...propsToRender} />);
+      buttonProps = wrapper.find(Button).props();
+      expect(buttonProps.disabled).toEqual(true);
+  
+      propsToRender.submitting = false;
+      propsToRender.pristine = true;
+      wrapper = shallow(<Component {...propsToRender} />);
+      buttonProps = wrapper.find(Button).props();
+      expect(buttonProps.disabled).toEqual(true);
     });
     
     it('should render a food text FormField component', () => {
