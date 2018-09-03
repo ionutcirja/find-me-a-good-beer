@@ -17,6 +17,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "import/prefer-default-export": "off",
-    "react/default-props-match-prop-types": false // TODO remove this line when eslint-plugin-react will be fixed
+    "react/default-props-match-prop-types": false, // TODO remove this line when eslint-plugin-react will be fixed
+    "no-confusing-arrow": 0
   }
 }
