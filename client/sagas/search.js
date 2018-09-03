@@ -3,9 +3,11 @@ import { startSubmit, stopSubmit, reset } from 'redux-form';
 import { SEARCH_BEER_FORM_NAME } from '../constants/forms';
 import { fetchBeerList } from '../services/search';
 import { updateBeerList } from '../actions/search';
+import { Action } from '../constants/types';
 import { BEER_LIST_REQUEST } from '../constants/action-types';
 
-export function* requestBeerList(food) {
+export function* requestBeerList(action: Action) {
+  const { food } = action.payload;
   yield put(startSubmit(SEARCH_BEER_FORM_NAME));
   
   try {

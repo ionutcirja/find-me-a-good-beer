@@ -16,7 +16,7 @@ describe('Search sagas', () => {
   describe('requestBeerList', () => {
     it('should yield a call to fetchBeerList api method and put a updateBeerList action in case of success', () => {
       const data = [{ name: 'Paulaner' }];
-      const generator = sagas.requestBeerList('lamb');
+      const generator = sagas.requestBeerList({ payload: { food: 'lamb' } });
       expect(generator.next().value).toEqual(put(startSubmit('search-beer-form')));
       expect(generator.next().value).toEqual(call(api.fetchBeerList, 'lamb'));
       expect(generator.next(data).value).toEqual(put(actions.updateBeerList(data)));
@@ -27,7 +27,7 @@ describe('Search sagas', () => {
     
     it('should yield a call to fetch api method and put a featuresUpdated action in case of error', () => {
       const error = { food: 'food name might be wrong' };
-      const generator = sagas.requestBeerList('beef');
+      const generator = sagas.requestBeerList({ payload: { food: 'beef' } });
       expect(generator.next().value).toEqual(put(startSubmit('search-beer-form')));
       expect(generator.next().value).toEqual(call(api.fetchBeerList, 'beef'));
       expect(generator.throw(error).value).toEqual(put(stopSubmit('search-beer-form', error)));
