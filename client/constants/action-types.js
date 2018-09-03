@@ -1,0 +1,2 @@
+export const BEER_LIST_REQUEST = 'BEER_LIST_REQUEST';
+export const UPDATE_BEER_LIST = 'UPDATE_BEER_LIST';
