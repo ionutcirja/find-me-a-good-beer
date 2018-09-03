@@ -12,8 +12,8 @@ describe('Search services', () => {
     });
     
     it('should call the low level api get method and fetch the correct url', () => {
-      api.fetchBeerList('lamb');
-      expect(lowLevelApi.get).toHaveBeenCalledWith('/beers?food=lamb');
+      api.fetchBeerList('lamb   cheese');
+      expect(lowLevelApi.get).toHaveBeenCalledWith('/beers?food=lamb_cheese');
     });
   });
 });
