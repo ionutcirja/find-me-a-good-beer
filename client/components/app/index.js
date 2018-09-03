@@ -3,6 +3,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import SearchForm from '../../containers/search-form';
+import BeerList from '../../containers/beer-list';
 
 const styles = {
   root: {
@@ -17,14 +18,9 @@ type Props = {
 };
 
 const App = ({ classes: { root } }: Props) => (
-  <Grid
-    className={root}
-    container
-    alignItems="center"
-    direction="column"
-    justify="center"
-  >
-    <SearchForm key="search-beer-form" />
+  <Grid className={root}>
+    <SearchForm />
+    <BeerList />
   </Grid>
 );
 
