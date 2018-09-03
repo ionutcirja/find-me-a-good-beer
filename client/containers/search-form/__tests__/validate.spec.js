@@ -1,25 +1,25 @@
 import validate from '../validate';
 
-describe('Login validation', () => {
-  describe('username', () => {
-    it('should return an error if username is an empty string', () => {
-      expect(validate({ username: '' })).toHaveProperty('username');
+describe('Search validation', () => {
+  describe('food', () => {
+    it('should return an error if food value is an empty string', () => {
+      expect(validate({ food: '' })).toHaveProperty('food');
     });
 
-    it('should return an error if username starts with a space', () => {
-      expect(validate({ username: ' john' })).toHaveProperty('username');
+    it('should return an error if food value starts with a space', () => {
+      expect(validate({ food: ' chips' })).toHaveProperty('food');
     });
 
-    it('should return an error if username ends with a space', () => {
-      expect(validate({ username: 'john ' })).toHaveProperty('username');
+    it('should return an error if food value ends with a space', () => {
+      expect(validate({ food: 'lamb ' })).toHaveProperty('food');
     });
 
-    it('should return an error if username contains just spaces', () => {
-      expect(validate({ username: '  ' })).toHaveProperty('username');
+    it('should return an error if food value contains just spaces', () => {
+      expect(validate({ food: '  ' })).toHaveProperty('food');
     });
 
-    it('should not return an error if username is valid', () => {
-      expect(validate({ username: 'john' })).not.toHaveProperty('username');
+    it('should not return an error if food value is valid', () => {
+      expect(validate({ food: 'beef' })).not.toHaveProperty('food');
     });
   });
 });

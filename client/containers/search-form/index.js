@@ -4,7 +4,7 @@ import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import * as searchActions from '../../actions/search';
 import validate from './validate';
-import { SEARCH_FORM_NAME } from '../../constants/forms';
+import { SEARCH_BEER_FORM_NAME } from '../../constants/forms';
 import SearchForm from '../../components/search-form';
 
 type Values = {
@@ -18,17 +18,15 @@ type Props = {
 };
 
 const mapDispatchToProps = (dispatch: void) => ({
-  actions: {
-    search: bindActionCreators(searchActions, dispatch),
-  },
+  actions: bindActionCreators(searchActions, dispatch),
 });
 
 const onSubmit = (values: Values, dispatch: void, props: Props) => {
-  props.actions.search(values);
+  props.actions.searchForBeer(values);
 };
 
 export default connect(null, mapDispatchToProps)(reduxForm({
-  form: SEARCH_FORM_NAME,
+  form: SEARCH_BEER_FORM_NAME,
   validate,
   onSubmit,
 })(SearchForm));

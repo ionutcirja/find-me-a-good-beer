@@ -1,24 +1,24 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
-import Container from '../';
+import Container from '..';
 import validate from '../validate';
-import * as UserActions from '../../../actions/user';
+import * as SearchActions from '../../../actions/search';
 
 jest.mock('../validate');
-jest.mock('../../../actions/user');
+jest.mock('../../../actions/search');
 
-describe('Login container', () => {
+describe('SearchForm container', () => {
   const createMockStore = configureMockStore();
   const store = createMockStore({});
 
-  const expectedLoginAction = { type: 'LOGIN' };
-  UserActions.login.mockReturnValue(expectedLoginAction);
+  const expectedSearchAction = { type: 'SEARCH' };
+  SearchActions.searchForBeer.mockReturnValue(expectedSearchAction);
 
   describe('render', () => {
-    it('should render a Login component', () => {
+    it('should render a SearchForm component', () => {
       const component = shallow(<Container store={store} />).shallow().shallow().shallow();
-      expect(component.find('Login').length).toEqual(1);
+      expect(component.find('SearchForm').length).toEqual(1);
     });
   });
 
@@ -26,16 +26,16 @@ describe('Login container', () => {
     it('should bind the necessary actions to props', () => {
       const component = shallow(<Container store={store} />).shallow().shallow().shallow();
       const props = component.props();
-      props.actions.user.login();
-      expect(UserActions.login).toHaveBeenCalled();
-      expect(store.getActions()).toEqual([expectedLoginAction]);
+      props.actions.searchForBeer();
+      expect(SearchActions.searchForBeer).toHaveBeenCalled();
+      expect(store.getActions()).toEqual([expectedSearchAction]);
     });
   });
 
   describe('form', () => {
     it('should have a name', () => {
       const component = shallow(<Container store={store} />).shallow();
-      expect(component.props().form).toEqual('login');
+      expect(component.props().form).toEqual('search-beer-form');
     });
 
     it('should have a validation method', () => {
@@ -44,21 +44,19 @@ describe('Login container', () => {
       expect(validate).toHaveBeenCalled();
     });
 
-    it('should call user login prop method on submit', () => {
+    it('should call searchForBeer prop method on submit', () => {
       const component = shallow(<Container store={store} />).shallow();
       const props = {
         actions: {
-          user: {
-            login: jest.fn(),
-          },
+          searchForBeer: jest.fn(),
         },
       };
       const values = {
-        username: 'john',
+        food: 'lamb',
       };
 
       component.props().onSubmit(values, null, props);
-      expect(props.actions.user.login).toHaveBeenCalledWith(values);
+      expect(props.actions.searchForBeer).toHaveBeenCalledWith(values);
     });
   });
 });
