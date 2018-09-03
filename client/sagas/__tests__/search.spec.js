@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { startSubmit, stopSubmit, reset } from 'redux-form';
+import { startSubmit, stopSubmit } from 'redux-form';
 import * as sagas from '../search';
 import * as api from '../../services/search';
 import * as actions from '../../actions/search';
@@ -15,15 +15,26 @@ describe('Search sagas', () => {
   
   describe('requestBeerList', () => {
     it('should yield put form startSubmit action, a call to fetchBeerList api method and '
-      + 'put an form reset action, a form stopSubmit action and put an '
-      + 'updateBeerList action in case of success', () => {
+      + 'put a form stopSubmit action and put an updateBeerList action in case of success', () => {
       const data = [{ name: 'Paulaner' }];
       const generator = sagas.requestBeerList({ payload: { food: 'lamb' } });
       expect(generator.next().value).toEqual(put(startSubmit('search-beer-form')));
       expect(generator.next().value).toEqual(call(api.fetchBeerList, 'lamb'));
       expect(generator.next(data).value).toEqual(put(actions.updateBeerList(data)));
-      expect(generator.next().value).toEqual(put(reset('search-beer-form')));
-      expect(generator.next().value).toEqual(put(stopSubmit('search-beer-form')));
+      expect(generator.next().value).toEqual(put(stopSubmit('search-beer-form', null)));
+      expect(generator.next().done).toEqual(true);
+    });
+    
+    it('should put a stopSubmit action with an overall error message '
+      + 'if api call is successful but data is empty', () => {
+      const data = [];
+      const generator = sagas.requestBeerList({ payload: { food: 'lamb' } });
+      expect(generator.next().value).toEqual(put(startSubmit('search-beer-form')));
+      expect(generator.next().value).toEqual(call(api.fetchBeerList, 'lamb'));
+      expect(generator.next(data).value).toEqual(put(actions.updateBeerList(data)));
+      expect(generator.next().value).toEqual(
+        put(stopSubmit('search-beer-form', { _error: 'We couldn\'t find any beer to match with your meal.' })),
+      );
       expect(generator.next().done).toEqual(true);
     });
     

@@ -1,6 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { startSubmit, stopSubmit, reset } from 'redux-form';
+import { startSubmit, stopSubmit } from 'redux-form';
 import { SEARCH_BEER_FORM_NAME } from '../constants/forms';
+import { BEER_NOT_FOUND } from '../constants/validation-messages';
 import { fetchBeerList } from '../services/search';
 import { updateBeerList } from '../actions/search';
 import { Action } from '../constants/types';
@@ -13,8 +14,8 @@ export function* requestBeerList(action: Action) {
   try {
     const data = yield call(fetchBeerList, food);
     yield put(updateBeerList(data));
-    yield put(reset(SEARCH_BEER_FORM_NAME));
-    yield put(stopSubmit(SEARCH_BEER_FORM_NAME));
+    const error = !data.length ? { _error: BEER_NOT_FOUND } : null;
+    yield put(stopSubmit(SEARCH_BEER_FORM_NAME, error));
   } catch (error) {
     yield put(stopSubmit(SEARCH_BEER_FORM_NAME, error));
   }
