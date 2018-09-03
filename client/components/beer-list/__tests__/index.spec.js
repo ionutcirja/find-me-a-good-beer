@@ -24,13 +24,13 @@ describe('BeerList component', () => {
   });
   
   describe('render', () => {
-    it('should not render if list length is equal with zero', () => {
+    it('should not render if the list length is equal with zero', () => {
       propsToRender.list = [];
       const wrapper = shallow(<Component {...propsToRender} />);
       expect(wrapper.find(BeerListItem).length).toEqual(0);
     });
     
-    it('should render a list of BeerListItem components if list length is bigger than zero', () => {
+    it('should render a list of BeerListItem components if the list length is bigger than zero', () => {
       const wrapper = shallow(<Component {...propsToRender} />);
       const itemsList = wrapper.find(BeerListItem);
       const itemsNum = itemsList.length;
