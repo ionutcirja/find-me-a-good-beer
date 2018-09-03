@@ -53,6 +53,7 @@ describe('TextField component', () => {
 
       propsToRender.meta.error = 'Food field is empty.';
       wrapper = shallow(<Component {...propsToRender} />);
+      expect(wrapper.find(Input).props().error).toEqual(true);
       expect(wrapper.find(FormHelperText).childAt(0).text()).toEqual(propsToRender.meta.error);
     });
   });

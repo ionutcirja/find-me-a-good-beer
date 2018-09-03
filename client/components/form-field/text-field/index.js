@@ -29,6 +29,7 @@ const ReduxFormTextField = ({
     {label && <InputLabel htmlFor={name}>{label}</InputLabel>}
     <Input
       {...input}
+      error={touched && !!error}
       id={name}
       placeholder={placeholder}
       type={type}
