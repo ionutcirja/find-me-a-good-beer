@@ -25,7 +25,21 @@ const theme = createMuiTheme({
       contrastText: '#DC143C',
     },
   },
+  typography: {
+    subheading: {
+      color: '#DC143C',
+    },
+  },
+  overrides: {
+    MuiFormLabel: {
+      root: {
+        color: '#DC143C',
+        marginBottom: '10px',
+      },
+    },
+  },
 });
+
 
 render(
   <Provider store={store}>
